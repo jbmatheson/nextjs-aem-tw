@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
-const CopyPlugin = require("copy-webpack-plugin");
 const withPWA = require("@ducanh2912/next-pwa").default({
   dest: "public",
 });
 const nextConfig = {
-  reactStrictMode: ["js", "jsx", "ts", "tsx", "mdx"],
+  reactStrictMode: true,
+  pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
   experimental: {
     instrumentationHook: true,
   },
@@ -21,4 +21,4 @@ const nextConfig = {
   ],
 };
 
-export default nextConfig;
+module.exports = withPWA(nextConfig);
