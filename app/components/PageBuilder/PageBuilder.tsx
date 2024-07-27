@@ -7,14 +7,14 @@ export function PageBuilder({
   fragment,
 }: InferProps<typeof PageBuilder.propTypes>) {
   if (fragment == null) {
-    return <></>;
+    return <div></div>;
   }
 
   switch (fragment.__typename) {
     case "LocationModel":
       return <Location className={className} fragment={fragment} />;
     default:
-      return <></>;
+      return <div></div>;
   }
 }
 

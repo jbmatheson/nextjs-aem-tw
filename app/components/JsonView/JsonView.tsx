@@ -1,8 +1,8 @@
 "use client";
 
-import "react18-json-view/src/styles.css";
+import "react18-json-view/src/style.css";
 // Assets
-import "./JsonView.scss";
+import "./JsonView.css";
 
 import PropTypes, { InferProps } from "prop-types";
 import { useEffect, useState } from "react";
@@ -35,5 +35,5 @@ export function JsonView({ src }: InferProps<typeof JsonView.propTypes>) {
 }
 
 JsonView.propTypes = {
-  src: PropTypes.object.isRequired,
+  src: PropTypes.any.isRequired,
 };
