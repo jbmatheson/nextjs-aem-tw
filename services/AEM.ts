@@ -2,21 +2,21 @@ import { AEMResponse } from "@/models/AEM";
 
 class Singleton {
   public getPageData(slug: string, locale: string = "en") {
-    const persistedQuery = `getPageByPath;_path=/content/dam/content-fragment/sites/${process.env.REACT_APP_AEM_PROJECT}/${locale}/pages/${slug}`;
+    const persistedQuery = `getPageByPath;_path=/content/dam/${process.env.REACT_APP_AEM_PROJECT}/poc-pages/${locale}/pages/${slug}`;
 
+    console.log("Persisted Query: ", persistedQuery);
     return AEM.runPersistedQuery(persistedQuery);
   }
 
   public runPersistedQuery(persistedQuery: string): Promise<AEMResponse> {
     // TODO - Need to iron out what this URL is supposed to be
     return fetch(
-      `${process.env.REACT_APP_AEM_URL}${process.env.REACT_APP_AEM_GRAPHQL_ENDPOINT}`,
+      `${process.env.REACT_APP_AEM_URL}${process.env.REACT_APP_AEM_ENDPOINT}`,
       {
         method: "GET",
         next: { revalidate: 60 },
         headers: {
-          "Ocp-Apim-Subscription-Key":
-            process.env.REACT_APP_AEM_SUBSCRIPTION_KEY,
+          Authorization: "Bearer " + process.env.REACT_APP_AEM_TOKEN,
           pq: persistedQuery,
           folder: process.env.REACT_APP_AEM_PROJECT,
           "Content-Type": "application/json",

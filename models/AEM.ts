@@ -21,5 +21,5 @@ interface AEMPageList {
 }
 
 export interface AEMResponse {
-  pageList: AEMPageList;
+  pocPageList: AEMPageList;
 }

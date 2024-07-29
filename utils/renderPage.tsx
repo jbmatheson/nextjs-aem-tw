@@ -5,14 +5,15 @@ import { PageBuilder } from "@/app/components/PageBuilder";
 
 export function renderPage(languageCode: string = "en") {
   return ({ params }: { params: { slug?: string[] } }) => {
-    const slug = params.slug == null ? "poc-page" : params.slug.join("/");
+    const slug = params.slug == null ? "homepage" : params.slug.join("/");
+    console.log("Slug: ", slug);
 
     return AEM.getPageData(slug, languageCode).then((response) => {
       if (response == null) {
         throw new Error("No response from AEM");
       }
 
-      const items = response.pageList.items;
+      const items = response.pocPageList.items;
       if (items.length === 0) {
         throw new Error("No items in response from AEM");
       }
