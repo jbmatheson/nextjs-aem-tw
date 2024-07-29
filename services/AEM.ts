@@ -12,10 +12,10 @@ class Singleton {
     // TODO - Need to iron out what this URL is supposed to be
     console.log(
       "AEM URL: ",
-      `${process.env.REACT_APP_AEM_URL}${process.env.REACT_APP_AEM_ENDPOINT}`
+      `${process.env.REACT_APP_AEM_URL}${process.env.REACT_APP_AEM_ENDPOINT}${persistedQuery}`
     );
     return fetch(
-      `${process.env.REACT_APP_AEM_URL}${process.env.REACT_APP_AEM_ENDPOINT}`,
+      `${process.env.REACT_APP_AEM_URL}${process.env.REACT_APP_AEM_ENDPOINT}${persistedQuery}`,
       {
         method: "GET",
         next: { revalidate: 60 },
