@@ -10,6 +10,10 @@ class Singleton {
 
   public runPersistedQuery(persistedQuery: string): Promise<AEMResponse> {
     // TODO - Need to iron out what this URL is supposed to be
+    console.log(
+      "AEM URL: ",
+      `${process.env.REACT_APP_AEM_URL}${process.env.REACT_APP_AEM_ENDPOINT}`
+    );
     return fetch(
       `${process.env.REACT_APP_AEM_URL}${process.env.REACT_APP_AEM_ENDPOINT}`,
       {
