@@ -1,3 +1,4 @@
+import { AEM } from "@/services/AEM";
 // Services
 import { JsonView } from "@/app/components/JsonView";
 import { PageBuilder } from "@/app/components/PageBuilder";
@@ -7,7 +8,7 @@ export function renderPage(languageCode: string = "en") {
   return ({ params }: { params: { slug?: string[] } }) => {
     const slug = params.slug == null ? "homepage" : params.slug.join("/");
 
-    // TODO - Remove this mock data -----------------------------------------------
+    /*     // TODO - Remove this mock data -----------------------------------------------
     const page = {
       pocPageList: {
         items: [
@@ -46,16 +47,17 @@ export function renderPage(languageCode: string = "en") {
         })}
       </main>
     );
-    //--------------------------------------------------------------------------------
-    /*return AEM.getPageData(slug, languageCode).then((response) => {
-             if (response == null) {
+  };
+    //-------------------------------------------------------------------------------- */
+    return AEM.getPageData(slug, languageCode).then((response) => {
+      if (response == null) {
         throw new Error("No response from AEM");
       }
 
+      const items = response.pocPageList.items;
       if (items.length === 0) {
         throw new Error("No items in response from AEM");
-        }
-      const items = response.pocPageList.items;
+      }
       const components = items[0].components;
       if (components == null) {
         throw new Error("No components in response from AEM");
@@ -75,6 +77,5 @@ export function renderPage(languageCode: string = "en") {
         </main>
       );
     });
-  };*/
   };
 }
