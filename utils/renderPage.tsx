@@ -9,23 +9,17 @@ export function renderPage(languageCode: string = "en") {
 
     return AEM.getPageData(slug, languageCode).then((response) => {
       if (response == null) {
-        return {
-          notFound: true,
-        };
+        throw new Error("No response from AEM");
       }
 
       const items = response.pageList.items;
       if (items.length === 0) {
-        return {
-          notFound: true,
-        };
+        throw new Error("No items in response from AEM");
       }
 
       const components = items[0].components;
       if (components == null) {
-        return {
-          notFound: true,
-        };
+        throw new Error("No components in response from AEM");
       }
 
       return (
